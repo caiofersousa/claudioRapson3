@@ -1,0 +1,303 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<head>
+<title>Claudio Rapson-Seu calculo de polinômios BrasiGuayo</title>
+<style>
+#BoxForm {     
+margin:20px;     
+padding:10px 0 20px 10px;     
+width:400px;     
+height:270px;     
+background:#fff;    
+border:1px solid #dcdcdc;     
+border-radius:10px; 
+}
+   
+#formulario ul li {    
+margin:0px 0;     
+list-style:none;     
+position:relative;     
+clear:both; 
+}
+   
+#formulario label {     
+margin:0px 0;     
+line-height:45px;     
+width:130px;     
+text-align:left;     
+float:left;     
+color:#666;
+font-family: Verdana, Arial, Tahoma;
+font-size:16px; 
+}   
+
+/* Nome, email */
+.campos01 {     
+padding:5px;     
+border:1px solid #CCCCCC;     
+background:#fcfcfc;     
+border-radius:5px;     
+color:#0082C0;
+font-family: Verdana, Arial, Tahoma;
+font-size:16px;
+width:300px; 
+}
+.campos01:focus { 
+background-color:#FFD;
+}
+
+/* cpf/cnpj, rg, ie */
+.campos02 {     
+float:left;     
+padding:5px;     
+border:1px solid #CCCCCC;     
+background:#fcfcfc;     
+border-radius:5px;     
+color:#0082C0;
+font-family: Verdana, Arial, Tahoma;
+font-size:16px; 
+width:200px;
+}
+.campos02:focus { 
+background-color:#FFD;
+}
+
+#formulario input#enviar {     
+width:100px;     
+height:40px;     
+margin:5px 0 0 200px;     
+cursor:pointer;     
+font-size:16px;     
+color:#f6f6f6;     
+background:#06C;     
+border:1px solid #ccc;     
+border-radius:5px; 
+}   
+
+#formulario input#enviar:hover {     
+color:#000;     
+background:#D0DDFD;     
+border-color:#999; 
+}
+</style>
+<script type="text/javascript" src="funcion.js"></script>
+        <script src="http://nerdamer.com/js/nerdamer.core.js"></script>
+        <script src="http://nerdamer.com/js/Algebra.js"></script>
+        <script src="http://nerdamer.com/js/Calculus.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="keywords" content="E-progress a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+<!-- default css files -->
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+<!-- default css files -->
+	
+<!--web font-->
+<link href="//fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,devanagari,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+<!--//web font-->
+	
+<!-- scrolling script -->
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script> 
+<!-- //scrolling script -->
+
+</head>
+
+<!-- Body -->
+<body>
+
+<!-- banner -->
+<div class="banner">
+	<div class="header-top">
+		<div class="container">
+			<div class="header-top-right">
+				<p><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@example.com">mike@mike.com</a></p>
+				<p><i class="fa fa-phone" aria-hidden="true"></i> +55 19 567 8901</p>
+			</div>
+		</div>
+	</div>
+		<div class="head">
+			<div class="container">
+					<div class="navbar-top">
+							<!-- Brand and toggle get grouped for better mobile display -->
+							<div class="navbar-header">
+							  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							  </button>
+								 <div class="navbar-brand logo ">
+									<h1 class="animated wow pulse" data-wow-delay=".5s">
+									<a href="index.html">ClaudioRapson</a></h1>
+								</div>
+
+							</div>
+							<!-- Collect the nav links, forms, and other content for toggling -->
+							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							 <ul class="nav navbar-nav link-effect-4">
+							<li class="active"><a href="index.html" data-hover="Home">Início</a> </li>
+								<li><a href="about.html" data-hover="About">Sobre </a> </li>
+								<li><a href="gallery.html"  data-hover="Gallery">Galeria</a></li>
+								<li><a href="contact.html" data-hover="Contact">Contato</a></li>
+							  </ul>
+							</div><!-- /.navbar-collapse -->
+						</div>
+					  <div class="clearfix"></div>	
+			</div>
+		</div>
+		
+<!-- //banner -->
+
+<!-- welcome -->
+  <div class='form-group'>
+<h3>Cálculo de Polinômios de Newton Rapson</h3>
+<h4>¡Espero ganar un 10 en eso trabajo! jajaja</h4>
+<div class="welcome">
+			<div  id="BoxForm" >
+				
+				
+				 <form  id="formulario" name="formulario" onsubmit="return procesar(this);">
+				 	<ul>                      
+						<li>
+				            <label for="x">
+				            Chute inicial:</label>
+				            <input class="campos01" id="x" name="x" type="text" size="15" />
+						</li>
+						<li>
+				            <label for="func">
+				            Função : </label>
+				            <input placeholder="(ex: x^2-2)" class="campos01" id="func"  name="func" type="text" size="15" />
+			            </li>
+			            <li>
+				            <input id="enviar" type="submit" value="Calcular" />  
+						  </li>
+	 			 </ul>
+	        </form>
+	        </div>
+
+ 		
+				<script src="jquery/jquery-1.8.3.min.js"></script>
+			    <script src="js/math.min.js" type="text/javascript"></script>
+			    <script src="js/d3.min.js" type="text/javascript"></script>
+			    <script src="js/function-plot@1.14.0" type="text/javascript"></script>
+			    <script src="js/main.js" type="text/javascript"></script>
+			    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+				
+			</div>
+			<div class="clearfix">
+				<table align="center" bgcolor="white">
+            <tr>
+                <th>
+
+
+                    <div id="resultado"></div>
+
+                </th>
+            </tr>
+ 		</table>
+			</div>
+</div>
+<!-- //welcome -->
+	
+		
+<!-- popup for sign in form -->
+<div class="modal video-modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModal1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div id="small-dialog1" class="mfp-hide book-form">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3>Sign In </h3>
+					<form action="#" method="post">
+					    <ul>                      
+						   <li>
+								<input type="text" name="Email" class="email" placeholder="Email" required=""/>
+								<input type="password" name="Password" class="password" placeholder="Password" required=""/>	
+								<ul>
+								<li>
+									<input type="checkbox" id="brand1" value="">
+									<label for="brand1"><span></span>Remember me</label>
+								</li>
+								</ul>
+								<a href="#">Forgot Password?</a><br>
+								<div class="clearfix"></div>
+								<input type="submit" value="Get Started">
+
+						    </li>
+ 						</ul>
+					</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- //popup for sign in form -->
+
+<!-- //popup for sign up form -->
+
+<!-- Default-JavaScript-File -->
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+<!-- //Default-JavaScript-File -->
+	
+<!-- clients js file-->
+	<script src="js/jquery.wmuSlider.js"></script> 
+		<script>
+			$('.example1').wmuSlider();         
+		</script> 
+<!-- //clients js file -->
+
+<!-- Jarallax -->
+<script src="js/jarallax.js"></script>
+	<script type="text/javascript">
+		/* init Jarallax */
+		$('.jarallax').jarallax({
+			speed: 0.5,
+			imgWidth: 1366,
+			imgHeight: 768
+		})
+	</script>
+<!-- //Jarallax -->
+
+<!-- smooth scrolling -->
+	<script src="js/SmoothScroll.min.js"></script>
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+	<!-- //here ends scrolling icon -->
+<!-- smooth scrolling -->
+
+</body>
+<!-- //Body -->
+</html>
