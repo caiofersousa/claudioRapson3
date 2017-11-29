@@ -358,14 +358,14 @@ function procesar(formulario) {
     var func = document.getElementsByName("func")[0].value;
     
     var err, x_1, x = parseFloat(formulario.x.value);
-    var resultado = '<table border="3"><tr><td align="center">i</td><td align="center">x<sub></sub></td><td align="center">error</td></tr>';
+    var resultado = '';
     do {
         //x_1 = x;
         var x_1 = x - funcion(func, x) / derivada(x);
         var e = Math.abs(x-x_1);
       x = x_1
         err = Math.abs((x - x_1) / x);
-        resultado += '<tr><td>x<sub>' + i + '</sub></td><td>' + x_1 + '</td><td>' + err + '</td></tr>';
+        resultado += '';
         i++;
         //I imagine that this is your safety so I would implement it like this
         if(i > 100) break;
