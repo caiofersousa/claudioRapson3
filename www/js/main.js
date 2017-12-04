@@ -1,109 +1,3 @@
-function interpolate(x, f)
-{
-    var amap = function(v){ return parseFloat(v) },
-        x = x.map(amap),
-        f = f.map(amap),
-        n = Math.min(x.length, f.length),
-        a = [];
-    // calculate interpolation (https://en.wikipedia.org/wiki/Newton_polynomial#Application)
-    for( var i=0; i < n; i++ )
-    {
-        a[i] = f[0];
-        for( var j=1; j<n-i; j++ )
-            f[j-1] = parseFloat( ((f[j] - f[j-1]) / (x[j+i] - x[j-1])).toFixed(7) );
-    }
-    // a0 + a1(x - x0) + a2(x-x0)(x-x1) + a3(x-x0)(x-x1)(x-x2) + ...
-    // print the interpolating polynomial and also multiply the binomials for final form
-    var pstr = a[0],
-        multi = [new Poly(a[0])];
-    for(var i=1; i<a.length; i++)
-    {
-        pstr += " + "+a[i];
-        var pairs = [a[i]];
-        for(var j=0; j<i; j++)
-        {
-            pstr += "(x - "+x[j]+")";
-            pairs.push([-x[j],1]);
-        }
-        multi.push(Poly.multiply.apply(undefined, pairs));
-    }
-    // print final form
-    var multiStr = [];
-    for( var i = multi.length - 1; i >= 0; i-- ) 
-    {
-        for( var j = multi[i].length - 1; j >= 0; j-- ) 
-        {
-            if(!multiStr[j])
-            {
-                multiStr[j*2] = 0;  
-                multiStr[j*2+1] = ( (j!=0?" x":"")+(j!=1&&j!=0?"<sup>"+j+"</sup>":"") )+" +";
-            } 
-            multiStr[j*2] += multi[i].coeff[j];
-        };
-    };
-    for( var i = multiStr.length - 2; i >= 0; i-=2 ) 
-    {
-        multiStr[i] = parseFloat(multiStr[i].toFixed(7));
-        if( multiStr[i+2] < 0 || !multiStr[i+2] ) multiStr[i+1] = multiStr[i+1].replace(/\+\s?$/,'');
-    };
-    var result = document.querySelector('#result');
-    result.innerHTML = '<div>'+pstr + '</div><br /><div>' + multiStr.join('').replace(/([\-\+])/g,' $1 ') + '</div>';
-}
-/*!
- * polynomial class with multiplication 
- */
-function Poly(coeff)
-{
-    this.coeff = !(coeff instanceof Array) ? Array.prototype.slice.call(arguments) : coeff;
-    this.length = this.coeff.length;
-    this.multiply = function(poly)
-    {
-        if( !poly ) return this;
-        var totalLength = this.coeff.length + poly.coeff.length - 1,
-            result = new Array(totalLength);
-        for( var i = 0; i < result.length; i++ ) result[i] = 0;
-        for( var i = 0; i < this.coeff.length; i++ )
-        {
-            for( var j = 0; j < poly.coeff.length; j++ )
-            {
-                result[i+j] += this.coeff[i] * poly.coeff[j];
-            }
-        }
-        return new Poly(result);
-    }
-}
-Poly.multiply = function()
-{
-    var args = Array.prototype.slice.call(arguments),
-        result = undefined;
-    for (var i = 0; i < args.length; i++) 
-    {
-        if( !(args[i] instanceof Poly) ) args[i] = new Poly(args[i]);
-        result = args[i].multiply(result);
-    };
-    return result;
-}
-
-
-
-
-
-//jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*var instance,
     options = {
         target: '#form-newton .graph',
@@ -115,22 +9,22 @@ Poly.multiply = function()
             sampler: 'builtIn',  // this will make function-plot use the evaluator of math.js
             graphType: 'polyline'
         }]
-    };*/
+    };
 
 function draw() {
- /*   try {
+    try {
         instance = functionPlot(options);
     }
     catch (err) {
         console.log(err);
     }
 
-    instance.programmaticZoom([-3, 3], [-2, 5]);*/
-}
+    instance.programmaticZoom([-3, 3], [-2, 5]);
+}*/
 
 
 
-var rp    = document.getElementById('chute').value;//document.getElementById('funcao').value, //Raiz Anterior - Chute
+/*var rp    = 0, //Raiz Anterior - Chute
     rn    = 0, //Raiz Atual - Chute
     i     = 0,
     range = 0.0001, //Precisão
@@ -139,16 +33,16 @@ var rp    = document.getElementById('chute').value;//document.getElementById('fu
     cont = 0, //Contador de Iterações
     funcao,
     derivada,
-    fnActive=null;
-
-/*$(document).on('ready', function(){
+    fnActive;*/
+/*
+$(document).on('ready', function(){
 
     plot($('#fun-1').val(), $('#der-1').val())
 
     $('#funcao').val($('#fun-1').val());
-    $('#derivada').val(derivada(document.getElementById('chute').value));
+    $('#derivada').val($('#der-1').val());
 
-});*/
+});
 
 function plot(f1, f2) {
 
@@ -185,9 +79,9 @@ function plot(f1, f2) {
 }
 
 
-/*$('#funcao').on('change', function(){
-    var teste = $('#fun-1').val();
-    var teste2 = $('#der-1').val();
+$('#functions-list').on('change', function(){
+    var teste = $('#fun-' + $(this).val()).val();
+    var teste2 = $('#der-' + $(this).val()).val();
 
     plot(teste, teste2);
 
@@ -196,13 +90,11 @@ function plot(f1, f2) {
 
 
 
-});*/
+});
 
 
 $(".button").on("click", function(){
-    //plot($('#funcao').val(), $('#derivada').val());
-    procesar('form-newton');
-
+    plot($('#funcao').val(), $('#derivada').val());
 
 });
 
@@ -220,16 +112,16 @@ function cleaner() {
     $('.raizes-list').html('');
     $('.iteracoes strong').text('');
 
-}
+}*/
 
-function chute() {
+function chute(formulario) {
 
-    var chutes = [],
+    var chutes = [], range=0.0001,rn,rp,
         num;
 
-    rn = funcao(x * -1);
+    rn = funcao(parseFloat(formulario.x.value) * -1);
 
-    for (num = (x * -1) + range; num <= x; num += range) {
+    for (num = (parseFloat(formulario.x.value) * -1) + range; num <= parseFloat(formulario.x.value); num += range) {
 
         rp = rn;
         rn = funcao(num);
@@ -245,15 +137,13 @@ function chute() {
 
     }
 
-    $.each(chutes, function(){
-        options.annotations.push({x: this});
-        $('.chutes-list').append('<li>' + this + '</li>');
-    });
+    
 
 
     return chutes;
 }
 function newton(chutes) {
+
     var xn,
         rn,
         dv;
@@ -321,12 +211,38 @@ function newton(chutes) {
     });
 
     options.data[0].fn = fnActive;
-   // draw();
-    //instance.programmaticZoom(zoomx, zoomy);
+    draw();
+    instance.programmaticZoom(zoomx, zoomy);
 
 
     return raizes;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -349,27 +265,38 @@ function funcion(func, x) {
 function derivada(x) {
     var func = document.getElementsByName("func")[0].value.trim();
     var derivative = nerdamer('diff(' + func + ')').evaluate();
-    return eval(derivative.text());
+    return eval(derivative.text()).toFixed(6);
 } 
 
 
 function procesar(formulario) {
+    
     var i = 0;
     var func = document.getElementsByName("func")[0].value;
+    var num;
+    var precisao = 0.0001;
+    num = (formulario.x.value * -1) + precisao;
+    //num <= formulario.x.value; 
     
+
+
     var err, x_1, x = parseFloat(formulario.x.value);
-   var resultado = '<table border="3"><tr><td align="center">i</td><td align="center">x<sub></sub></td><td align="center">error</td></tr>';
+    var resultado = '<table border="3"><tr><td align="center">i</td><td align="center">x<sub></sub></td><td align="center">error</td></tr>';
     do {
+        
+       
+            num += 1;
+        x= num;
         //x_1 = x;
-        var x_1 = x - funcion(func, x) / derivada(x);
-        var e = Math.abs(x-x_1);
-      x = x_1
-        err = Math.abs((x - x_1) / x);
+        var x_1 = (x - (funcion(func, x) / derivada(x))).toFixed(6);
+        var e = Math.abs(x-x_1).toFixed(6);
+      x = x_1;
+        err = Math.abs((x - x_1) / x).toFixed(6);
          resultado += '<tr><td>x<sub>' + i + '</sub></td><td>' + x_1 + '</td><td>' + err + '</td></tr>';
         i++;
-        //I imagine that this is your safety so I would implement it like this
-        if(i > 100) break;
-    } while (e > 0.01);
-    document.getElementById('resultado').innerHTML = resultado + '</tbody></table><br>' + (i == 100 ? 'A solução não é convergente. ' : 'A solução é ' + x);
+        //I imagine that this is your safety so I would implement it like this[]
+        if(i > 1000) break;
+    } while (e > 0.0001);
+    document.getElementById('resultado').innerHTML = resultado + '</tbody></table><br>' + (i >= 1000 ? 'A solução não é convergente. ' : 'A solução é ' + x);
     return false;
 }
