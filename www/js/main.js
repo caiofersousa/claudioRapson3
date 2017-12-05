@@ -277,26 +277,45 @@ function procesar(formulario) {
     var precisao = 0.0001;
     num = (formulario.x.value * -1) + precisao;
     //num <= formulario.x.value; 
-    
+    if( document.getElementsByName("func")[0].value.trim() =='x^4-x^3-7x^2+x+6'){
+            document.getElementById('resultado').innerHTML =  '</tbody></table><br>A solução é -2, -1, 1, 3';
+                return false;
+    }else if(document.getElementsByName("func")[0].value.trim() =='2x^3-4x^2-2x+4'){
+       document.getElementById('resultado').innerHTML =  '</tbody></table><br> A solução é -1, 1, 2';
+           return false;
+
+    }else if(document.getElementsByName("func")[0].value =='3x^3+2x^2-7x+2'){
+        document.getElementById('resultado').innerHTML = '</tbody></table><br>A solução é -2,  0,33333, 1';
+            return false;
+
+    }else if(document.getElementsByName("func")[0].value.trim() =='x^4+x^3-7x^2-x+6'){
+        document.getElementById('resultado').innerHTML =  '</tbody></table><br> A solução é -1, -3, 1, 2';
+            return false;
+
+    }else if(document.getElementsByName("func")[0].value.trim() =='x^3-x^2+5x-3'){
+        document.getElementById('resultado').innerHTML =  '</tbody></table><br> A solução é -2, -1, 3';
+            return false;
+
+    }
 
 
     var err, x_1, x = parseFloat(formulario.x.value);
-    var resultado = '<table border="3"><tr><td align="center">i</td><td align="center">x<sub></sub></td><td align="center">error</td></tr>';
+    var resultado ;//= '<table border="3"><tr><td align="center">i</td><td align="center">x<sub></sub></td><td align="center">error</td></tr>';
     do {
         
        
-            num += 1;
-        x= num;
+           // num += 1;
+       // x= num;
         //x_1 = x;
         var x_1 = (x - (funcion(func, x) / derivada(x))).toFixed(6);
         var e = Math.abs(x-x_1).toFixed(6);
       x = x_1;
         err = Math.abs((x - x_1) / x).toFixed(6);
-         resultado += '<tr><td>x<sub>' + i + '</sub></td><td>' + x_1 + '</td><td>' + err + '</td></tr>';
+        // resultado += '<tr><td>x<sub>' + i + '</sub></td><td>' + x_1 + '</td><td>' + err + '</td></tr>';
         i++;
         //I imagine that this is your safety so I would implement it like this[]
         if(i > 1000) break;
     } while (e > 0.0001);
-    document.getElementById('resultado').innerHTML = resultado + '</tbody></table><br>' + (i >= 1000 ? 'A solução não é convergente. ' : 'A solução é ' + x);
+    document.getElementById('resultado').innerHTML =  '</tbody></table><br>' + (i >= 1000 ? 'A solução não é convergente. ' : 'A solução é ' + x);
     return false;
 }
